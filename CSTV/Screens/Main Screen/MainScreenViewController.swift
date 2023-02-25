@@ -22,6 +22,15 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
         setupNavigationController()
         view.backgroundColor = CSTVColors.mainBgColor
         configureTableView()
+        
+        NetworkManager.shared.getMatches(page: 1) { result in
+            switch result {
+            case .success(let matches):
+                print("SUCCESS: \(matches[0].league.name)")
+            case .failure(let error):
+                print("ERROR: \(error.rawValue)")
+            }
+        }
 
 //        view.addSubview(emptyStateView)
 //        NSLayoutConstraint.activate([
