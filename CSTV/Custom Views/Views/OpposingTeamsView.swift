@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OpposingTeamsView: UIView {
+final class OpposingTeamsView: UIView {
     
     private lazy var mainStackView: UIStackView = {
         let stack = UIStackView()
@@ -31,7 +31,7 @@ class OpposingTeamsView: UIView {
         return stack
     }()
     
-    let firstTeamLogo: UIImageView = {
+    var firstTeamLogo: UIImageView = {
         let logo = UIImageView()
         logo.heightAnchor.constraint(equalToConstant: 60).isActive = true
         logo.widthAnchor.constraint(equalToConstant: 60).isActive = true
@@ -40,9 +40,9 @@ class OpposingTeamsView: UIView {
         return logo
     }()
     
-    let firstTeamTitle: UILabel = {
+    var firstTeamTitle: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Time 1"
+        label.text = "N/A"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 10)
         return label
@@ -59,7 +59,7 @@ class OpposingTeamsView: UIView {
         return stack
     }()
     
-    let secondTeamLogo: UIImageView = {
+    var secondTeamLogo: UIImageView = {
         let logo = UIImageView()
         logo.heightAnchor.constraint(equalToConstant: 60).isActive = true
         logo.widthAnchor.constraint(equalToConstant: 60).isActive = true
@@ -68,15 +68,15 @@ class OpposingTeamsView: UIView {
         return logo
     }()
     
-    let secondTeamTitle: UILabel = {
+    var secondTeamTitle: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Time 2"
+        label.text = "N/A"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
     
-    let versusLabel: UILabel = {
+    private let versusLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "VS"
         label.textAlignment = .center

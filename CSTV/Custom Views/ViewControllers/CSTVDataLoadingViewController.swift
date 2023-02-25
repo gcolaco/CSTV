@@ -33,6 +33,7 @@ class CSTVDataLoadingViewController: UIViewController {
         }
         
         let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
         containerView.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         

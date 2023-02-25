@@ -11,16 +11,16 @@ struct Matches: Codable {
     let league: League
     let opponents: [Opponent]
     let status: String
-    let beginAt: Date?
-    
+    let beginAt: String?
+    let serie: SerieInfo
     private enum CodingKeys: String, CodingKey {
-        case league, opponents, status
+        case league, opponents, status, serie
         case beginAt = "begin_at"
     }
 }
 
 struct League: Codable {
-    let imageUrl: URL?
+    let imageUrl: String?
     let name: String
     
     private enum CodingKeys: String, CodingKey {
@@ -34,7 +34,7 @@ struct Opponent: Codable {
 }
 
 struct OpponentInfo: Codable {
-    let imageUrl: URL?
+    let imageUrl: String?
     let name: String
     let id: Int
     
@@ -42,4 +42,8 @@ struct OpponentInfo: Codable {
         case imageUrl = "image_url"
         case name, id
     }
+}
+
+struct SerieInfo: Codable {
+    let name: String?
 }

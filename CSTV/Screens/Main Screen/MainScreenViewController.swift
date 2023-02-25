@@ -11,8 +11,11 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
     //MARK: - Components
     
     private let tableView = UITableView()
-    
-//    private let emptyStateView = CSTVEmptyStateView()
+    private var allMatches: [Matches] = []
+    private var page: Int = 1
+    private var hasMoreMatches = true //to stop pagination when api is returning less then 10 matches
+    private var isLoadingMoreMatches = false
+
 
     //MARK: - Life cycle
     
@@ -21,25 +24,8 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
         overrideUserInterfaceStyle = .light
         setupNavigationController()
         view.backgroundColor = CSTVColors.mainBgColor
+        getMatches(page: page)
         configureTableView()
-        
-        NetworkManager.shared.getMatches(page: 1) { result in
-            switch result {
-            case .success(let matches):
-                print("SUCCESS: \(matches[0].league.name)")
-            case .failure(let error):
-                print("ERROR: \(error.rawValue)")
-            }
-        }
-
-//        view.addSubview(emptyStateView)
-//        NSLayoutConstraint.activate([
-//            emptyStateView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            emptyStateView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//
-//        ])
     }
 
     
@@ -70,18 +56,45 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
         
         tableView.register(MatchesCell.self, forCellReuseIdentifier: MatchesCell.matchesCellReuseID)
     }
-
+    
+    //MARK: - Fetching data methods
+    
+    private func getMatches(page: Int) {
+        showLoadingView()
+        isLoadingMoreMatches = true
+        NetworkManager.shared.getUpcomingMatches(page: page) { [weak self] result in
+            guard let self = self else {return}
+            self.dismissLoadingView()
+            switch result {
+            case .success(let matches):
+                if matches.count < 10 { self.hasMoreMatches = false }
+                self.allMatches.append(contentsOf: matches)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+//                self.presentGFALertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                print("ERROR: \(error.rawValue)")
+            }
+            self.isLoadingMoreMatches = false
+        }
+    }
 }
 
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return allMatches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MatchesCell.matchesCellReuseID, for: indexPath) as! MatchesCell
-        cell.selectionStyle = .none 
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: MatchesCell.matchesCellReuseID, for: indexPath) as? MatchesCell {
+            cell.selectionStyle = .none
+    //        cell.layoutMargins = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
+            let matches = allMatches[indexPath.row]
+            cell.set(matches: matches)
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -91,4 +104,17 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+        let height          = scrollView.frame.size.height
+
+        if offsetY > contentHeight - height {
+            guard hasMoreMatches, !isLoadingMoreMatches else {return}
+            page += 1
+            getMatches(page: page)
+            
+        }
+    }
+
 }

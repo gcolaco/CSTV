@@ -16,7 +16,7 @@ class NetworkManager {
     
     private init() {}
     
-    func getMatches(page: Int, completion: @escaping (Result<[Matches], CSTVError>) -> Void) {
+    func getUpcomingMatches(page: Int, completion: @escaping (Result<[Matches], CSTVError>) -> Void) {
         
         let endPoint = baseURL + "matches/upcoming?sort=&page=\(page)&per_page=10&token=\(token)"
         
@@ -44,7 +44,7 @@ class NetworkManager {
             
             do {
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
+//                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let matches = try decoder.decode([Matches].self, from: data)
                 completion(.success(matches))
             } catch {

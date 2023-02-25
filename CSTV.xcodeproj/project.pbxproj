@@ -23,6 +23,9 @@
 		725B78E929AA3FA50028942F /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B78E829AA3FA50028942F /* Matches.swift */; };
 		725B78EC29AA430E0028942F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B78EB29AA430E0028942F /* NetworkManager.swift */; };
 		725B78EE29AA44890028942F /* CSTVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B78ED29AA44890028942F /* CSTVError.swift */; };
+		725B78F329AA821F0028942F /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B78F229AA821F0028942F /* Date+Ext.swift */; };
+		725B793529AA93A50028942F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B793429AA93A50028942F /* String+Ext.swift */; };
+		725B793729AAA0970028942F /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B793629AAA0970028942F /* UIImageView+Ext.swift */; };
 		72CD64BA29A9B42E00E2034F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64B929A9B42E00E2034F /* AppDelegate.swift */; };
 		72CD64BC29A9B42E00E2034F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64BB29A9B42E00E2034F /* SceneDelegate.swift */; };
 		72CD64C329A9B42E00E2034F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72CD64C229A9B42E00E2034F /* Assets.xcassets */; };
@@ -70,6 +73,9 @@
 		725B78E829AA3FA50028942F /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		725B78EB29AA430E0028942F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		725B78ED29AA44890028942F /* CSTVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTVError.swift; sourceTree = "<group>"; };
+		725B78F229AA821F0028942F /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		725B793429AA93A50028942F /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		725B793629AAA0970028942F /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		72CD64B629A9B42E00E2034F /* CSTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CD64B929A9B42E00E2034F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72CD64BB29A9B42E00E2034F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -297,6 +303,9 @@
 			children = (
 				72CD64EE29A9BA7F00E2034F /* UIView+Ext.swift */,
 				72CD64F129A9BAEE00E2034F /* UITableView+Ext.swift */,
+				725B78F229AA821F0028942F /* Date+Ext.swift */,
+				725B793429AA93A50028942F /* String+Ext.swift */,
+				725B793629AAA0970028942F /* UIImageView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,10 +443,12 @@
 				725B78EE29AA44890028942F /* CSTVError.swift in Sources */,
 				725B78E529A9C0D50028942F /* SecondTeamLineUpView.swift in Sources */,
 				72CD64EF29A9BA7F00E2034F /* UIView+Ext.swift in Sources */,
+				725B78F329AA821F0028942F /* Date+Ext.swift in Sources */,
 				725B78DD29A9C05C0028942F /* MatchesView.swift in Sources */,
 				725B78EC29AA430E0028942F /* NetworkManager.swift in Sources */,
 				725B78D629A9C00D0028942F /* MainScreenViewController.swift in Sources */,
 				72CD64F429A9BBA500E2034F /* CSTVColors.swift in Sources */,
+				725B793729AAA0970028942F /* UIImageView+Ext.swift in Sources */,
 				72CD64F629A9BBAE00E2034F /* CSTVImages.swift in Sources */,
 				725B78D429A9BFEA0028942F /* SplashViewController.swift in Sources */,
 				725B78CD29A9BECE0028942F /* CSTVEmptyStateView.swift in Sources */,
@@ -447,6 +458,7 @@
 				725B78DF29A9C0A40028942F /* MatchDetailViewController.swift in Sources */,
 				725B78C729A9BEB20028942F /* CSTVDataLoadingViewController.swift in Sources */,
 				725B78E929AA3FA50028942F /* Matches.swift in Sources */,
+				725B793529AA93A50028942F /* String+Ext.swift in Sources */,
 				725B78CB29A9BECE0028942F /* MatchScheduleView.swift in Sources */,
 				725B78CF29A9BEF50028942F /* CSTVBackButton.swift in Sources */,
 				72CD64BA29A9B42E00E2034F /* AppDelegate.swift in Sources */,
@@ -629,6 +641,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -657,6 +670,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

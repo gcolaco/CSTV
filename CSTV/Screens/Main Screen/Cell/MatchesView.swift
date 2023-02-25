@@ -11,6 +11,7 @@ class MatchesView: UIView {
     
     private let matchTimeView = MatchScheduleView()
     private let opposingTeams = OpposingTeamsView()
+//    var matches: Matches? = nil
     
     private let separatorView: UIView = {
         let view = UIView(frame: .zero)
@@ -30,7 +31,7 @@ class MatchesView: UIView {
         return logo
     }()
     
-    private let leagueLabel: UILabel = {
+    private lazy var leagueLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "League + serie"
         label.textColor = .white
@@ -38,7 +39,12 @@ class MatchesView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+//    
+//    
+//    convenience init(matches: Matches) {
+//        self.init(frame: .zero)
+//        self.matches = matches
+//    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
