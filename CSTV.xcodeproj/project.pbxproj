@@ -15,6 +15,10 @@
 		72CD64D129A9B42F00E2034F /* CSTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64D029A9B42F00E2034F /* CSTVTests.swift */; };
 		72CD64DB29A9B42F00E2034F /* CSTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64DA29A9B42F00E2034F /* CSTVUITests.swift */; };
 		72CD64DD29A9B42F00E2034F /* CSTVUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64DC29A9B42F00E2034F /* CSTVUITestsLaunchTests.swift */; };
+		72CD64EF29A9BA7F00E2034F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64EE29A9BA7F00E2034F /* UIView+Ext.swift */; };
+		72CD64F229A9BAEE00E2034F /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64F129A9BAEE00E2034F /* UITableView+Ext.swift */; };
+		72CD64F429A9BBA500E2034F /* CSTVColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64F329A9BBA500E2034F /* CSTVColors.swift */; };
+		72CD64F629A9BBAE00E2034F /* CSTVImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64F529A9BBAE00E2034F /* CSTVImages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		72CD64D629A9B42F00E2034F /* CSTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CD64DA29A9B42F00E2034F /* CSTVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTVUITests.swift; sourceTree = "<group>"; };
 		72CD64DC29A9B42F00E2034F /* CSTVUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTVUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		72CD64EE29A9BA7F00E2034F /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		72CD64F129A9BAEE00E2034F /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		72CD64F329A9BBA500E2034F /* CSTVColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTVColors.swift; sourceTree = "<group>"; };
+		72CD64F529A9BBAE00E2034F /* CSTVImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTVImages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +105,11 @@
 		72CD64B829A9B42E00E2034F /* CSTV */ = {
 			isa = PBXGroup;
 			children = (
-				72CD64B929A9B42E00E2034F /* AppDelegate.swift */,
-				72CD64BB29A9B42E00E2034F /* SceneDelegate.swift */,
-				72CD64BD29A9B42E00E2034F /* ViewController.swift */,
-				72CD64C229A9B42E00E2034F /* Assets.xcassets */,
-				72CD64C429A9B42E00E2034F /* LaunchScreen.storyboard */,
+				72CD64ED29A9BA0200E2034F /* Extensions */,
+				72CD64EC29A9BA0000E2034F /* Utilities */,
+				72CD64EB29A9B9F800E2034F /* Custom Views */,
+				72CD64EA29A9B84E00E2034F /* Screens */,
+				72CD64E929A9B84600E2034F /* Supporting Files */,
 				72CD64C729A9B42E00E2034F /* Info.plist */,
 			);
 			path = CSTV;
@@ -122,6 +130,50 @@
 				72CD64DC29A9B42F00E2034F /* CSTVUITestsLaunchTests.swift */,
 			);
 			path = CSTVUITests;
+			sourceTree = "<group>";
+		};
+		72CD64E929A9B84600E2034F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				72CD64B929A9B42E00E2034F /* AppDelegate.swift */,
+				72CD64BB29A9B42E00E2034F /* SceneDelegate.swift */,
+				72CD64C229A9B42E00E2034F /* Assets.xcassets */,
+				72CD64C429A9B42E00E2034F /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72CD64EA29A9B84E00E2034F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				72CD64BD29A9B42E00E2034F /* ViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		72CD64EB29A9B9F800E2034F /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		72CD64EC29A9BA0000E2034F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				72CD64F329A9BBA500E2034F /* CSTVColors.swift */,
+				72CD64F529A9BBAE00E2034F /* CSTVImages.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		72CD64ED29A9BA0200E2034F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				72CD64EE29A9BA7F00E2034F /* UIView+Ext.swift */,
+				72CD64F129A9BAEE00E2034F /* UITableView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +306,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CD64EF29A9BA7F00E2034F /* UIView+Ext.swift in Sources */,
+				72CD64F429A9BBA500E2034F /* CSTVColors.swift in Sources */,
+				72CD64F629A9BBAE00E2034F /* CSTVImages.swift in Sources */,
 				72CD64BE29A9B42E00E2034F /* ViewController.swift in Sources */,
+				72CD64F229A9BAEE00E2034F /* UITableView+Ext.swift in Sources */,
 				72CD64BA29A9B42E00E2034F /* AppDelegate.swift in Sources */,
 				72CD64BC29A9B42E00E2034F /* SceneDelegate.swift in Sources */,
 			);
