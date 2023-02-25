@@ -1,6 +1,6 @@
 //
-//  CSTVImages.swift
-//  CSTV-Challenge
+//  SceneDelegate.swift
+//  CSTV
 //
 //  Created by Gustavo Colaço on 25/02/23.
 //
