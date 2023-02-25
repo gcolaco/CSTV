@@ -20,11 +20,7 @@ class CSTVDataLoadingViewController: UIViewController {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .darkContent
-    }
-    
+
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
