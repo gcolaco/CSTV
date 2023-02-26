@@ -99,12 +99,15 @@ final class OpposingTeamsView: UIView {
         matches.opponents.enumerated().forEach { index, match in
             if index == 0 {
                 firstTeamTitle.text = match.opponent.name
-                firstTeamLogo.downloadImageForCash(fromUrl: match.opponent.imageUrl!)
+                if let imgUrl = match.opponent.imageUrl {
+                    firstTeamLogo.downloadImageForCash(fromUrl: imgUrl)
+                }
             } else if index == 1 {
                 secondTeamTitle.text = match.opponent.name
-                secondTeamLogo.downloadImageForCash(fromUrl: match.opponent.imageUrl!)
+                if let imgUrl = match.opponent.imageUrl {
+                    secondTeamLogo.downloadImageForCash(fromUrl: imgUrl)
+                }
             }
-
         }
     }
     

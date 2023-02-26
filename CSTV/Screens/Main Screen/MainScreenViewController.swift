@@ -21,7 +21,6 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light
         setupNavigationController()
         view.backgroundColor = CSTVColors.mainBgColor
 
@@ -54,6 +53,7 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.separatorStyle = .none
         tableView.removeExcessCells()
         
         tableView.register(MatchesCell.self, forCellReuseIdentifier: MatchesCell.matchesCellReuseID)

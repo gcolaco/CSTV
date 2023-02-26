@@ -97,6 +97,7 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         
         tableView.removeExcessCells()
         
