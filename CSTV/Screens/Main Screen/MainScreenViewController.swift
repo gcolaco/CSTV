@@ -54,6 +54,9 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
         tableView.delegate          = self
         tableView.dataSource        = self
         
+        tableView.refreshControl    = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        
         tableView.separatorStyle = .none
         tableView.removeExcessCells()
         
@@ -94,6 +97,16 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
             case .failure(let error):
                 print("ERROR: \(error.rawValue)")
             }
+        }
+    }
+    
+    @objc private func didPullToRefresh() {
+        allMatches.removeAll()
+        getUpcomingMatches(page: 1)
+        getRunningMatches()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
 }
