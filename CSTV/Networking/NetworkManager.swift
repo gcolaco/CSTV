@@ -55,6 +55,46 @@ class NetworkManager {
         
         task.resume()
     }
+    
+    func getRunningMatches(completion: @escaping (Result<[Matches], CSTVError>) -> Void) {
+        
+        let endPoint = baseURL + "matches/running?token=\(token)"
+        
+        guard let url = URL(string: endPoint) else {
+            completion(.failure(.unableToComplete))
+            return
+        }
+        
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let _ = error {
+                completion(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let matches = try decoder.decode([Matches].self, from: data)
+                completion(.success(matches))
+            } catch {
+                completion(.failure(.invalidData))
+            }
+            
+            
+        }
+        
+        task.resume()
+    }
   
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         

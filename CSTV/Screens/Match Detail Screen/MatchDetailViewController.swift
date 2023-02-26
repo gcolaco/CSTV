@@ -50,8 +50,14 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
     init(matchDetail: Matches) {
         self.matchDetail = matchDetail
         super.init(nibName: nil, bundle: nil)
+        
+        if matchDetail.status == "running" {
+            dateTitle.text = "AGORA"
+        } else {
+            dateTitle.text = matchDetail.beginAt?.convertStringToDayHourFormat()
+        }
+        
         screenTitle.text = matchDetail.league.name + " " + (matchDetail.serie.name ?? "")
-        dateTitle.text = matchDetail.beginAt?.convertStringToDayHourFormat()
         opposingTeamView.configureFields(with: matchDetail)
     }
     

@@ -24,7 +24,9 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
         overrideUserInterfaceStyle = .light
         setupNavigationController()
         view.backgroundColor = CSTVColors.mainBgColor
-        getMatches(page: page)
+
+        getRunningMatches()
+        getUpcomingMatches(page: page)
         configureTableView()
     }
 
@@ -59,7 +61,7 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
     
     //MARK: - Fetching data methods
     
-    private func getMatches(page: Int) {
+    private func getUpcomingMatches(page: Int) {
         showLoadingView()
         isLoadingMoreMatches = true
         NetworkManager.shared.getUpcomingMatches(page: page) { [weak self] result in
@@ -78,17 +80,35 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
             self.isLoadingMoreMatches = false
         }
     }
+    
+    private func getRunningMatches() {
+//        showLoadingView()
+        NetworkManager.shared.getRunningMatches { result in
+//            self.dismissLoadingView()
+            switch result {
+            case .success(let matches):
+                self.allMatches.insert(contentsOf: matches, at: 0)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print("ERROR: \(error.rawValue)")
+            }
+        }
+    }
 }
 
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMatches.count
+//        return allMatches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchesCell.matchesCellReuseID, for: indexPath) as? MatchesCell {
             cell.selectionStyle = .none
             let matches = allMatches[indexPath.row]
+//            let matches = allMatches[indexPath.row]
             cell.set(matches: matches)
             return cell
         }
@@ -111,7 +131,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         if offsetY > contentHeight - height {
             guard hasMoreMatches, !isLoadingMoreMatches else {return}
             page += 1
-            getMatches(page: page)
+            getUpcomingMatches(page: page)
             
         }
     }
