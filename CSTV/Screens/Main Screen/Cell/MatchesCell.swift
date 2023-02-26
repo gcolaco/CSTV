@@ -44,7 +44,7 @@ class MatchesCell: UITableViewCell {
         let label = UILabel(frame: .zero)
         label.text = "League + serie"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font = CSTVFont.robotoRegular(size: 8)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,7 +69,7 @@ class MatchesCell: UITableViewCell {
             
             leagueLabel.centerYAnchor.constraint(equalTo: leagueLogo.centerYAnchor),
             leagueLabel.leadingAnchor.constraint(equalTo: leagueLogo.trailingAnchor, constant: 8),
-            leagueLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            leagueLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             
             matchTimeLabel.centerXAnchor.constraint(equalTo: matchTimeView.centerXAnchor),
             matchTimeLabel.centerYAnchor.constraint(equalTo: matchTimeView.centerYAnchor),

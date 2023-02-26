@@ -12,7 +12,7 @@ final class OpposingTeamsView: UIView {
     private lazy var mainStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.distribution = .fillProportionally
+        stack.distribution = .fillEqually
         stack.addArrangedSubview(firsTeamStackView)
         stack.addArrangedSubview(versusLabel)
         stack.addArrangedSubview(secondTeamStackView)
@@ -44,7 +44,7 @@ final class OpposingTeamsView: UIView {
         let label = UILabel(frame: .zero)
         label.text = "N/A"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = CSTVFont.robotoRegular(size: 10)
         return label
     }()
     
@@ -72,7 +72,7 @@ final class OpposingTeamsView: UIView {
         let label = UILabel(frame: .zero)
         label.text = "N/A"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = CSTVFont.robotoRegular(size: 10)
         return label
     }()
     
@@ -81,7 +81,7 @@ final class OpposingTeamsView: UIView {
         label.text = "VS"
         label.textAlignment = .center
         label.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = CSTVFont.robotoRegular(size: 12)
         return label
     }()
 

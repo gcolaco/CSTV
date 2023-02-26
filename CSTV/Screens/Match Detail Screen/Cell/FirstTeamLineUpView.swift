@@ -24,10 +24,10 @@ class FirstTeamLineUpView: UIView {
         let label = UILabel(frame: .zero)
         label.textColor = CSTVColors.lightCSTVBlue
         label.adjustsFontSizeToFitWidth   = true
-        label.minimumScaleFactor          = 0.9
+        label.minimumScaleFactor          = 0.6
         label.lineBreakMode               = .byTruncatingTail
         label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: 14, weight: .heavy)
+        label.font = CSTVFont.robotoRegular(size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -36,10 +36,10 @@ class FirstTeamLineUpView: UIView {
         let label = UILabel(frame: .zero)
         label.textColor = CSTVColors.lightCSTVBlue
         label.adjustsFontSizeToFitWidth   = true
-        label.minimumScaleFactor          = 0.9
+        label.minimumScaleFactor          = 0.6
         label.lineBreakMode               = .byTruncatingTail
         label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = CSTVFont.robotoRegular(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

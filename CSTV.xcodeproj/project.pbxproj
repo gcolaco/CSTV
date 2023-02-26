@@ -27,6 +27,10 @@
 		725B793529AA93A50028942F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B793429AA93A50028942F /* String+Ext.swift */; };
 		725B793729AAA0970028942F /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B793629AAA0970028942F /* UIImageView+Ext.swift */; };
 		725B793B29ABC3100028942F /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B793A29ABC3100028942F /* Teams.swift */; };
+		725B794329ABF21F0028942F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 725B794029ABF21F0028942F /* Roboto-Medium.ttf */; };
+		725B794429ABF21F0028942F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 725B794129ABF21F0028942F /* Roboto-Regular.ttf */; };
+		725B794529ABF21F0028942F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 725B794229ABF21F0028942F /* Roboto-Bold.ttf */; };
+		725B794729ABF3EC0028942F /* CSTVFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725B794629ABF3EC0028942F /* CSTVFont.swift */; };
 		72CD64BA29A9B42E00E2034F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64B929A9B42E00E2034F /* AppDelegate.swift */; };
 		72CD64BC29A9B42E00E2034F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD64BB29A9B42E00E2034F /* SceneDelegate.swift */; };
 		72CD64C329A9B42E00E2034F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72CD64C229A9B42E00E2034F /* Assets.xcassets */; };
@@ -78,6 +82,10 @@
 		725B793429AA93A50028942F /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		725B793629AAA0970028942F /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		725B793A29ABC3100028942F /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		725B794029ABF21F0028942F /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		725B794129ABF21F0028942F /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		725B794229ABF21F0028942F /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		725B794629ABF3EC0028942F /* CSTVFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTVFont.swift; sourceTree = "<group>"; };
 		72CD64B629A9B42E00E2034F /* CSTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CD64B929A9B42E00E2034F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72CD64BB29A9B42E00E2034F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +226,24 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		725B793C29ABF1EE0028942F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				725B793F29ABF1FF0028942F /* Roboto */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		725B793F29ABF1FF0028942F /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				725B794229ABF21F0028942F /* Roboto-Bold.ttf */,
+				725B794029ABF21F0028942F /* Roboto-Medium.ttf */,
+				725B794129ABF21F0028942F /* Roboto-Regular.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
 		72CD64AD29A9B42E00E2034F = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +267,7 @@
 		72CD64B829A9B42E00E2034F /* CSTV */ = {
 			isa = PBXGroup;
 			children = (
+				725B793C29ABF1EE0028942F /* Fonts */,
 				72CD64ED29A9BA0200E2034F /* Extensions */,
 				72CD64EC29A9BA0000E2034F /* Utilities */,
 				725B78EA29AA42F50028942F /* Networking */,
@@ -296,6 +323,7 @@
 			children = (
 				72CD64F329A9BBA500E2034F /* CSTVColors.swift */,
 				72CD64F529A9BBAE00E2034F /* CSTVImages.swift */,
+				725B794629ABF3EC0028942F /* CSTVFont.swift */,
 				725B78ED29AA44890028942F /* CSTVError.swift */,
 			);
 			path = Utilities;
@@ -419,6 +447,9 @@
 			files = (
 				72CD64C629A9B42E00E2034F /* LaunchScreen.storyboard in Resources */,
 				72CD64C329A9B42E00E2034F /* Assets.xcassets in Resources */,
+				725B794529ABF21F0028942F /* Roboto-Bold.ttf in Resources */,
+				725B794429ABF21F0028942F /* Roboto-Regular.ttf in Resources */,
+				725B794329ABF21F0028942F /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +490,7 @@
 				72CD64F229A9BAEE00E2034F /* UITableView+Ext.swift in Sources */,
 				725B78DC29A9C05C0028942F /* MatchesCell.swift in Sources */,
 				725B78DF29A9C0A40028942F /* MatchDetailViewController.swift in Sources */,
+				725B794729ABF3EC0028942F /* CSTVFont.swift in Sources */,
 				725B78C729A9BEB20028942F /* CSTVDataLoadingViewController.swift in Sources */,
 				725B78E929AA3FA50028942F /* Matches.swift in Sources */,
 				725B793529AA93A50028942F /* String+Ext.swift in Sources */,

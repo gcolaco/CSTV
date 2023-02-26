@@ -20,10 +20,10 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         let label = UILabel(frame: .zero)
         label.textColor = .white
         label.adjustsFontSizeToFitWidth   = true
-        label.minimumScaleFactor          = 0.9
+        label.minimumScaleFactor          = 0.6
         label.lineBreakMode               = .byTruncatingTail
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = CSTVFont.robotoRegular(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +35,7 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         label.minimumScaleFactor          = 0.9
         label.lineBreakMode               = .byTruncatingTail
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: .heavy)
+        label.font = CSTVFont.robotoRegular(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
