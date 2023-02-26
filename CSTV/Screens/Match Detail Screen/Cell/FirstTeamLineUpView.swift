@@ -14,6 +14,7 @@ class FirstTeamLineUpView: UIView {
         logo.layer.cornerRadius = 8
         logo.contentMode = .scaleAspectFit
         logo.clipsToBounds = true
+        logo.tintColor = CSTVColors.futureMatchColor
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.image = CSTVImages.playerImgPlaceholder
         return logo

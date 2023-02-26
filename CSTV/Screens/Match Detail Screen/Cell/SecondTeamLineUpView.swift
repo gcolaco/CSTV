@@ -11,10 +11,9 @@ class SecondTeamLineUpView: UIView {
     
     private let secondTeamPlayerImg: UIImageView = {
         let logo = UIImageView()
-        //        logo.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        //        logo.widthAnchor.constraint(equalToConstant: 50).isActive = true
         logo.layer.cornerRadius = 8
         logo.contentMode = .scaleAspectFit
+        logo.tintColor = CSTVColors.futureMatchColor
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.image = CSTVImages.playerImgPlaceholder
         return logo

@@ -11,7 +11,6 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
     
     private let backButton = CSTVBackButton(frame: .zero)
     private let opposingTeamView = OpposingTeamsView()
-//    private let lineUpView = TeamsLineUpView()
     private let tableView = UITableView()
     private let matchDetail: Matches!
     private var firstTeamPlayers: [Player] = []
@@ -46,7 +45,6 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         view.backgroundColor = CSTVColors.mainBgColor
         configureUI()
         configureButtonAction()
-//        getFirstTeamPlayers()
         configureTableView()
     }
     
@@ -68,7 +66,6 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         
         screenTitle.text = matchDetail.league.name + " " + (matchDetail.serie.name ?? "")
         opposingTeamView.configureFields(with: matchDetail)
-//        getTeamsPlayers(with: matchDetail.opponents)
     }
     
     required init?(coder: NSCoder) {
@@ -163,13 +160,16 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
 
 extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return firstTeamPlayers.count
+        if firstTeamPlayers.count <= secondTeamPlayers.count {
+            return firstTeamPlayers.count
+        } else {
+            return secondTeamPlayers.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: TeamLineUpCell.teamLineUpReuseID, for: indexPath) as? TeamLineUpCell {
             cell.selectionStyle = .none
-            print("total: \(firstTeamPlayers.count)")
             let firstTeamPlayer = firstTeamPlayers[indexPath.row]
             cell.setFirstTeamSide(with: firstTeamPlayer)
             let secondTeamPlayer = secondTeamPlayers[indexPath.row]
