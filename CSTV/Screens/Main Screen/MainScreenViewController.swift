@@ -73,7 +73,6 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
                     self.tableView.reloadData()
                 }
             case .failure(let error):
-//                self.presentGFALertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
                 print("ERROR: \(error.rawValue)")
             }
             self.isLoadingMoreMatches = false
@@ -89,7 +88,6 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchesCell.matchesCellReuseID, for: indexPath) as? MatchesCell {
             cell.selectionStyle = .none
-    //        cell.layoutMargins = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
             let matches = allMatches[indexPath.row]
             cell.set(matches: matches)
             return cell
@@ -98,7 +96,8 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let matchdetailsVC = MatchDetailViewController()
+        let match = allMatches[indexPath.row]
+        let matchdetailsVC = MatchDetailViewController(matchDetail: match)
         matchdetailsVC.modalPresentationStyle = .overFullScreen
         self.present(matchdetailsVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)

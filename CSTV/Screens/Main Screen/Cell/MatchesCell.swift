@@ -111,17 +111,9 @@ class MatchesCell: UITableViewCell {
         if let imgUrl = matches.league.imageUrl {
             leagueLogo.downloadImageForCash(fromUrl: imgUrl)
         }
+        
+        opposingTeams.configureFields(with: matches)
        
-        matches.opponents.enumerated().forEach { index, match in
-            if index == 0 {
-                opposingTeams.firstTeamTitle.text = match.opponent.name
-                opposingTeams.firstTeamLogo.downloadImageForCash(fromUrl: match.opponent.imageUrl!)
-            } else if index == 1 {
-                opposingTeams.secondTeamTitle.text = match.opponent.name
-                opposingTeams.secondTeamLogo.downloadImageForCash(fromUrl: match.opponent.imageUrl!)
-            }
-
-        }
         
     }
     

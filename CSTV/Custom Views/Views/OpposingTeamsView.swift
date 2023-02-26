@@ -31,7 +31,7 @@ final class OpposingTeamsView: UIView {
         return stack
     }()
     
-    var firstTeamLogo: UIImageView = {
+    private lazy var firstTeamLogo: UIImageView = {
         let logo = UIImageView()
         logo.heightAnchor.constraint(equalToConstant: 60).isActive = true
         logo.widthAnchor.constraint(equalToConstant: 60).isActive = true
@@ -40,7 +40,7 @@ final class OpposingTeamsView: UIView {
         return logo
     }()
     
-    var firstTeamTitle: UILabel = {
+    private lazy var firstTeamTitle: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "N/A"
         label.textColor = .white
@@ -59,7 +59,7 @@ final class OpposingTeamsView: UIView {
         return stack
     }()
     
-    var secondTeamLogo: UIImageView = {
+    private lazy var secondTeamLogo: UIImageView = {
         let logo = UIImageView()
         logo.heightAnchor.constraint(equalToConstant: 60).isActive = true
         logo.widthAnchor.constraint(equalToConstant: 60).isActive = true
@@ -68,7 +68,7 @@ final class OpposingTeamsView: UIView {
         return logo
     }()
     
-    var secondTeamTitle: UILabel = {
+    private lazy var secondTeamTitle: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "N/A"
         label.textColor = .white
@@ -93,6 +93,19 @@ final class OpposingTeamsView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureFields(with matches: Matches) {
+        matches.opponents.enumerated().forEach { index, match in
+            if index == 0 {
+                firstTeamTitle.text = match.opponent.name
+                firstTeamLogo.downloadImageForCash(fromUrl: match.opponent.imageUrl!)
+            } else if index == 1 {
+                secondTeamTitle.text = match.opponent.name
+                secondTeamLogo.downloadImageForCash(fromUrl: match.opponent.imageUrl!)
+            }
+
+        }
     }
     
     private func configure() {

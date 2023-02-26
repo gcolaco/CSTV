@@ -13,10 +13,10 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
     private let opposingTeamView = OpposingTeamsView()
 //    private let lineUpView = TeamsLineUpView()
     private let tableView = UITableView()
+    private let matchDetail: Matches!
     
     let screenTitle: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "League + series"
         label.textColor = .white
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.9
@@ -29,7 +29,6 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
     
     let dateTitle: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Hoje, 21:00"
         label.textColor = .white
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.9
@@ -47,7 +46,18 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         configureButtonAction()
         configureTableView()
     }
-
+    
+    init(matchDetail: Matches) {
+        self.matchDetail = matchDetail
+        super.init(nibName: nil, bundle: nil)
+        screenTitle.text = matchDetail.league.name + " " + (matchDetail.serie.name ?? "")
+        dateTitle.text = matchDetail.beginAt?.convertStringToDayHourFormat()
+        opposingTeamView.configureFields(with: matchDetail)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private func configureUI() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
