@@ -9,36 +9,42 @@ import UIKit
 
 final class MatchDetailViewController: CSTVDataLoadingViewController {
     
-    private let backButton = CSTVBackButton(frame: .zero)
-    private let opposingTeamView = OpposingTeamsView()
-    private let tableView = UITableView()
+    //MARK: - Properties
+
+    private let backButton                  = CSTVBackButton(frame: .zero)
+    private let opposingTeamView            = OpposingTeamsView()
+    private let tableView                   = UITableView()
     private let matchDetail: Matches!
-    private var firstTeamPlayers: [Player] = []
+    private var firstTeamPlayers: [Player]  = []
     private var secondTeamPlayers: [Player] = []
     
+    //MARK: - Components
+
     let screenTitle: UILabel = {
         let label = UILabel(frame: .zero)
-        label.textColor = .white
+        label.textColor                   = .white
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.6
         label.lineBreakMode               = .byTruncatingTail
-        label.textAlignment = .center
-        label.font = CSTVFont.robotoRegular(size: 18)
+        label.textAlignment               = .center
+        label.font                        = CSTVFont.robotoRegular(size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let dateTitle: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.textColor = .white
+        let label                         = UILabel(frame: .zero)
+        label.textColor                   = .white
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.9
         label.lineBreakMode               = .byTruncatingTail
-        label.textAlignment = .center
-        label.font = CSTVFont.robotoRegular(size: 12)
+        label.textAlignment               = .center
+        label.font                        = CSTVFont.robotoRegular(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    //MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +78,9 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         fatalError("init(coder:) has not been implemented")
     }
    
+    //MARK: - Fetching data methods
+
     private func getTeamsPlayers(with opponentSlug: [Opponent]) {
-        
         opponentSlug.enumerated().forEach { index, team in
             if index == 0 {
                 showLoadingView()
@@ -109,6 +116,8 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         }
     }
     
+    //MARK: - Configuration method
+    
     private func configureUI() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubviews(backButton, screenTitle, opposingTeamView, dateTitle, tableView)
@@ -136,12 +145,12 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
     }
     
     private func configureTableView() {
-        tableView.backgroundColor = .clear
-        tableView.rowHeight = 100
+        tableView.backgroundColor   = .clear
+        tableView.rowHeight         = 100
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
+        tableView.delegate          = self
+        tableView.dataSource        = self
+        tableView.separatorStyle    = .none
         
         tableView.removeExcessCells()
         
@@ -157,6 +166,8 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
     }
 
 }
+
+//MARK: - Extensions TableView delegate and DataSource
 
 extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

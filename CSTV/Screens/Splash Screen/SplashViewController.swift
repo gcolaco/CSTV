@@ -66,26 +66,26 @@ final class SplashViewController: UIViewController {
     
     private func addPulsingAnimation(to imageView: UIImageView) {
         // This animation that scales the image
-        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
-        scaleAnimation.duration = 1.5
-        scaleAnimation.repeatCount = .infinity
+        let scaleAnimation          = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimation.duration     = 1.5
+        scaleAnimation.repeatCount  = .infinity
         scaleAnimation.autoreverses = false
-        scaleAnimation.fromValue = 1.0
-        scaleAnimation.toValue = 1.1
+        scaleAnimation.fromValue    = 1.0
+        scaleAnimation.toValue      = 1.1
         
         // This is reponsible for the opacity animation
-        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-        opacityAnimation.duration = 1.5
-        opacityAnimation.repeatCount = .infinity
-        opacityAnimation.autoreverses = true
-        opacityAnimation.fromValue = 1.0
-        opacityAnimation.toValue = 0.5
+        let opacityAnimation            = CABasicAnimation(keyPath: "opacity")
+        opacityAnimation.duration       = 1.5
+        opacityAnimation.repeatCount    = .infinity
+        opacityAnimation.autoreverses   = true
+        opacityAnimation.fromValue      = 1.0
+        opacityAnimation.toValue        = 0.5
         
         // Joins the animations together and add them to the image view's layer
-        let animationGroup = CAAnimationGroup()
-        animationGroup.animations = [scaleAnimation, opacityAnimation]
-        animationGroup.duration = 1.5
-        animationGroup.repeatCount = .infinity
+        let animationGroup          = CAAnimationGroup()
+        animationGroup.animations   = [scaleAnimation, opacityAnimation]
+        animationGroup.duration     = 1.5
+        animationGroup.repeatCount  = .infinity
         imageView.layer.add(animationGroup, forKey: "pulse")
     }
 

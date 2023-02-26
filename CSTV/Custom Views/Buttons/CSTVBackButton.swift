@@ -9,6 +9,8 @@ import UIKit
 
 class CSTVBackButton: UIButton {
     
+    //MARK: - Life cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -18,6 +20,8 @@ class CSTVBackButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    //MARK: - Configuration method
     
     private func configure() {
         setImage(CSTVImages.backArrow, for: .normal)

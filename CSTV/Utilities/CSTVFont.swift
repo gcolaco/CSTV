@@ -8,7 +8,6 @@
 import UIKit
 
 enum CSTVFont {
-    
     static func robotoRegular(size: CGFloat) -> UIFont? {
         return UIFont(name: "Roboto-Regular", size: size)
     }
@@ -20,5 +19,4 @@ enum CSTVFont {
     static func robotoBold(size: CGFloat) -> UIFont? {
         return UIFont(name: "Roboto-Bold", size: size)
     }
-    
 }

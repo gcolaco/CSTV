@@ -8,54 +8,60 @@
 import UIKit
 
 final class MatchesCell: UITableViewCell {
-     
-    static let matchesCellReuseID = "MatchesCell"
+    
+    //MARK: - properties
 
-    private let matchTimeView = MatchScheduleView()
-    private let opposingTeams = OpposingTeamsView()
+    static let matchesCellReuseID   = "MatchesCell"
+
+    //MARK: - Components
+
+    private let matchTimeView       = MatchScheduleView()
+    private let opposingTeams       = OpposingTeamsView()
     
     private lazy var matchTimeLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.textColor = .white
+        let label           = UILabel(frame: .zero)
+        label.textColor     = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font          = UIFont.systemFont(ofSize: 8)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let separatorView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = CSTVColors.futureMatchColor
+        let view                = UIView(frame: .zero)
+        view.backgroundColor    = CSTVColors.futureMatchColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 1).isActive = true
         return view
     }()
     
     private let leagueLogo: UIImageView = {
-        let logo = UIImageView()
+        let logo                = UIImageView()
         logo.layer.cornerRadius = 8
-        logo.clipsToBounds = true
-        logo.image = CSTVImages.teamImgPlaceholder
+        logo.clipsToBounds      = true
+        logo.image              = CSTVImages.teamImgPlaceholder
         logo.translatesAutoresizingMaskIntoConstraints = false
         return logo
     }()
     
     private lazy var leagueLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "Unknown"
+        let label       = UILabel(frame: .zero)
+        label.text      = "Unknown"
         label.textColor = .white
-        label.font = CSTVFont.robotoRegular(size: 8)
+        label.font      = CSTVFont.robotoRegular(size: 8)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var mainView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = CSTVColors.cellColor
+        let view                = UIView(frame: .zero)
+        view.backgroundColor    = CSTVColors.cellColor
         view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubviews(matchTimeView, leagueLogo, leagueLabel, separatorView, opposingTeams)
         matchTimeView.addSubview(matchTimeLabel)
+        
         NSLayoutConstraint.activate([
             matchTimeView.topAnchor.constraint(equalTo: view.topAnchor),
             matchTimeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -87,6 +93,8 @@ final class MatchesCell: UITableViewCell {
         return view
     }()
     
+    //MARK: - Life cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureCell()
@@ -96,6 +104,7 @@ final class MatchesCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup method
     
     func set(matches: Matches) {
         leagueLabel.text = matches.league.name + " " + (matches.serie.name ?? "")
@@ -117,6 +126,8 @@ final class MatchesCell: UITableViewCell {
         
     }
     
+    //MARK: - Configuration method
+
     private func configureCell() {
         addSubview(mainView)
         mainView.addSubview(matchTimeView)

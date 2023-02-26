@@ -9,42 +9,46 @@ import UIKit
 
 final class SecondTeamLineUpView: UIView {
     
+    //MARK: - Components
+
     private let secondTeamPlayerImg: UIImageView = {
-        let logo = UIImageView()
+        let logo                = UIImageView()
         logo.layer.cornerRadius = 8
-        logo.contentMode = .scaleAspectFit
-        logo.tintColor = CSTVColors.futureMatchColor
+        logo.contentMode        = .scaleAspectFit
+        logo.tintColor          = CSTVColors.futureMatchColor
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.image = CSTVImages.playerImgPlaceholder
         return logo
     }()
     
     private let secondTeamPlayerNickname: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "Nickname"
-        label.textColor = CSTVColors.lightCSTVBlue
+        let label                         = UILabel(frame: .zero)
+        label.text                        = "Nickname"
+        label.textColor                   = CSTVColors.lightCSTVBlue
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.6
         label.lineBreakMode               = .byTruncatingTail
-        label.textAlignment = .left
-        label.font = CSTVFont.robotoRegular(size: 14)
+        label.textAlignment               = .left
+        label.font                        = CSTVFont.robotoRegular(size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let secondTeamPlayerName: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "Nome Jogador"
-        label.textColor = CSTVColors.lightCSTVBlue
+        let label                         = UILabel(frame: .zero)
+        label.text                        = "Nome Jogador"
+        label.textColor                   = CSTVColors.lightCSTVBlue
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.6
         label.lineBreakMode               = .byTruncatingTail
-        label.textAlignment = .left
-        label.font = CSTVFont.robotoRegular(size: 12)
+        label.textAlignment               = .left
+        label.font                        = CSTVFont.robotoRegular(size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    //MARK: - Life cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -59,6 +63,8 @@ final class SecondTeamLineUpView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configuration method
+
     private func configureUI() {
         addSubviews(secondTeamPlayerImg, secondTeamPlayerNickname, secondTeamPlayerName)
         
@@ -79,7 +85,8 @@ final class SecondTeamLineUpView: UIView {
         ])
     }
     
-    
+    //MARK: - Setup method
+
     func setupView(with player: Player) {
         if let playerImgUrl = player.imageUrl {
             secondTeamPlayerImg.downloadImageForCash(fromUrl: playerImgUrl)

@@ -9,10 +9,12 @@ import UIKit
 
 final class OpposingTeamsView: UIView {
     
+    //MARK: - Components
+    
     private lazy var mainStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
+        let stack           = UIStackView()
+        stack.axis          = .horizontal
+        stack.distribution  = .fillEqually
         stack.addArrangedSubview(firsTeamStackView)
         stack.addArrangedSubview(versusLabel)
         stack.addArrangedSubview(secondTeamStackView)
@@ -21,10 +23,10 @@ final class OpposingTeamsView: UIView {
     }()
     
     private lazy var firsTeamStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
+        let stack       = UIStackView()
+        stack.axis      = .vertical
         stack.alignment = .center
-        stack.spacing = 10
+        stack.spacing   = 10
         stack.addArrangedSubview(firstTeamLogo)
         stack.addArrangedSubview(firstTeamTitle)
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -41,16 +43,16 @@ final class OpposingTeamsView: UIView {
     }()
     
     private lazy var firstTeamTitle: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "N/A"
+        let label       = UILabel(frame: .zero)
+        label.text      = "N/A"
         label.textColor = .white
-        label.font = CSTVFont.robotoRegular(size: 10)
+        label.font      = CSTVFont.robotoRegular(size: 10)
         return label
     }()
     
     private lazy var secondTeamStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
+        let stack       = UIStackView()
+        stack.axis      = .vertical
         stack.alignment = .center
         stack.spacing = 10
         stack.addArrangedSubview(secondTeamLogo)
@@ -69,23 +71,24 @@ final class OpposingTeamsView: UIView {
     }()
     
     private lazy var secondTeamTitle: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "N/A"
+        let label       = UILabel(frame: .zero)
+        label.text      = "N/A"
         label.textColor = .white
         label.font = CSTVFont.robotoRegular(size: 10)
         return label
     }()
     
     private let versusLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "VS"
+        let label           = UILabel(frame: .zero)
+        label.text          = "VS"
         label.textAlignment = .center
-        label.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
-        label.font = CSTVFont.robotoRegular(size: 12)
+        label.textColor     = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+        label.font          = CSTVFont.robotoRegular(size: 12)
         return label
     }()
 
-    
+    //MARK: - Life cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -95,6 +98,8 @@ final class OpposingTeamsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configuration method
+
     func configureFields(with matches: Matches) {
         matches.opponents.enumerated().forEach { index, match in
             if index == 0 {

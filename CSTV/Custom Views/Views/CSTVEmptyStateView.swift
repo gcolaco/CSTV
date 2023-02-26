@@ -8,27 +8,31 @@
 import UIKit
 
 class CSTVEmptyStateView: UIView {
-       
+    
+    //MARK: - Components
+
     private let messageLabel: UILabel = {
-        let label = UILabel()
-        label.text = "No momento não encontramos nenhuma partida. Tente novamente mais tarde"
+        let label           = UILabel()
+        label.text          = "No momento não encontramos nenhuma partida. Tente novamente mais tarde"
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = CSTVColors.lightCSTVBlue
+        label.font          = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textColor     = CSTVColors.lightCSTVBlue
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let logoImageView: UIImageView = {
-        let logo = UIImageView()
-        logo.image = CSTVImages.emptyLogo
-        logo.tintColor = CSTVColors.lightCSTVBlue
+        let logo            = UIImageView()
+        logo.image          = CSTVImages.emptyLogo
+        logo.tintColor      = CSTVColors.lightCSTVBlue
+        logo.contentMode    = .scaleAspectFill
         logo.translatesAutoresizingMaskIntoConstraints = false
-        logo.contentMode = .scaleAspectFill
         return logo
     }()
     
+    //MARK: - Life cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -38,6 +42,8 @@ class CSTVEmptyStateView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Configuration method
 
     private func configure() {
         addSubviews(messageLabel, logoImageView)

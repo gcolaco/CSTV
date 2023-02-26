@@ -9,15 +9,19 @@ import UIKit
 
 final class TeamLineUpCell: UITableViewCell {
 
-    static let teamLineUpReuseID = "TeamLineUpCell"
-    private let firstTeamLineUp = FirstTeamLineUpView()
-    private let secondTeamLineUp = SecondTeamLineUpView()
+    //MARK: - Properties
+
+    static let teamLineUpReuseID    = "TeamLineUpCell"
+    private let firstTeamLineUp     = FirstTeamLineUpView()
+    private let secondTeamLineUp    = SecondTeamLineUpView()
     
+    //MARK: - Components
+
     private lazy var teamsStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.spacing = 13
+        let stack           = UIStackView()
+        stack.axis          = .horizontal
+        stack.distribution  = .fillEqually
+        stack.spacing       = 13
         
         stack.addArrangedSubview(firstTeamLineUp)
         stack.addArrangedSubview(secondTeamLineUp)
@@ -26,6 +30,8 @@ final class TeamLineUpCell: UITableViewCell {
         return stack
     }()
     
+    //MARK: - Life cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureCell()
@@ -36,6 +42,8 @@ final class TeamLineUpCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup methods
+
     func setFirstTeamSide(with player: Player) {
         firstTeamLineUp.setupView(with: player)
     }
@@ -44,6 +52,8 @@ final class TeamLineUpCell: UITableViewCell {
         secondTeamLineUp.setupView(with: player)
     }
     
+    //MARK: - Configuration method
+
     private func configureCell() {
         addSubview(teamsStackView)
         backgroundColor = .clear

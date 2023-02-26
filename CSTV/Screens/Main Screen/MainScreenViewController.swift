@@ -10,11 +10,11 @@ import UIKit
 final class MainScreenViewController: CSTVDataLoadingViewController {
     //MARK: - Components
     
-    private let tableView = UITableView()
-    private var allMatches: [Matches] = []
-    private var page: Int = 1
-    private var hasMoreMatches = true //to stop pagination when api is returning less then 10 matches
-    private var isLoadingMoreMatches = false
+    private let tableView               = UITableView()
+    private var allMatches: [Matches]   = []
+    private var page: Int               = 1
+    private var hasMoreMatches          = true //to stop pagination when api is returning less then 10 matches
+    private var isLoadingMoreMatches    = false
 
 
     //MARK: - Life cycle
@@ -31,6 +31,7 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
 
     
     //MARK: - Configuration method
+    
     private func setupNavigationController() {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Partidas"
@@ -47,11 +48,11 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
                     tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
                 ])
 
-        tableView.backgroundColor = .clear
-        tableView.rowHeight = 230
+        tableView.backgroundColor   = .clear
+        tableView.rowHeight         = 230
 
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate          = self
+        tableView.dataSource        = self
         
         tableView.separatorStyle = .none
         tableView.removeExcessCells()
@@ -64,6 +65,7 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
     private func getUpcomingMatches(page: Int) {
         showLoadingView()
         isLoadingMoreMatches = true
+        
         NetworkManager.shared.getUpcomingMatches(page: page) { [weak self] result in
             guard let self = self else {return}
             self.dismissLoadingView()
@@ -96,6 +98,8 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
     }
 }
 
+//MARK: - Extensions - TableView delegate and DataSource
+
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMatches.count
@@ -104,7 +108,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchesCell.matchesCellReuseID, for: indexPath) as? MatchesCell {
             cell.selectionStyle = .none
-            let matches = allMatches[indexPath.row]
+            let matches         = allMatches[indexPath.row]
             cell.set(matches: matches)
             return cell
         }
@@ -112,13 +116,15 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let match = allMatches[indexPath.row]
-        let matchdetailsVC = MatchDetailViewController(matchDetail: match)
+        let match           = allMatches[indexPath.row]
+        let matchdetailsVC  = MatchDetailViewController(matchDetail: match)
+        
         matchdetailsVC.modalPresentationStyle = .overFullScreen
         self.present(matchdetailsVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    //This method is responsible for the pagination
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY         = scrollView.contentOffset.y
         let contentHeight   = scrollView.contentSize.height

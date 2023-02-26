@@ -17,7 +17,6 @@ class NetworkManager {
     private init() {}
     
     func getUpcomingMatches(page: Int, completion: @escaping (Result<[Matches], CSTVError>) -> Void) {
-        
         let endPoint = baseURL + "matches/upcoming?sort=&page=\(page)&per_page=10&token=\(token)"
         
         guard let url = URL(string: endPoint) else {
@@ -57,7 +56,6 @@ class NetworkManager {
     }
     
     func getRunningMatches(completion: @escaping (Result<[Matches], CSTVError>) -> Void) {
-        
         let endPoint = baseURL + "matches/running?token=\(token)"
         
         guard let url = URL(string: endPoint) else {
@@ -95,7 +93,7 @@ class NetworkManager {
         
         task.resume()
     }
-    //https://api.pandascore.co/csgo/teams?filter[slug]=mibr&token=iMSx4P6nUTsxypzIkomcghBoYwvKudXtZuSOLFzL4f-W9DoCzSU
+    
     func getPlayersInfo(for slug: String, completion: @escaping (Result<[Teams], CSTVError>) -> Void){
         let endPoint = baseURL + "teams?filter[slug]=\(slug)&token=\(token)"
         
@@ -136,7 +134,6 @@ class NetworkManager {
     }
   
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
-        
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) {
@@ -165,7 +162,5 @@ class NetworkManager {
         }
         
         task.resume()
-        
     }
-   
 }

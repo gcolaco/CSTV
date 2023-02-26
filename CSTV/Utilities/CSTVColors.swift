@@ -8,9 +8,9 @@
 import UIKit
 
 enum CSTVColors {
-    static let mainBgColor = UIColor(named: "MainBgColor")
-    static let cellColor = UIColor(named: "LightCellColor")
-    static let liveMatchColor = UIColor(named: "LiveMatchColor")
+    static let mainBgColor      = UIColor(named: "MainBgColor")
+    static let cellColor        = UIColor(named: "LightCellColor")
+    static let liveMatchColor   = UIColor(named: "LiveMatchColor")
     static let futureMatchColor = UIColor(named: "FutureMatchColor")
-    static let lightCSTVBlue = UIColor(named: "lightCSTVBlue")
+    static let lightCSTVBlue    = UIColor(named: "lightCSTVBlue")
 }

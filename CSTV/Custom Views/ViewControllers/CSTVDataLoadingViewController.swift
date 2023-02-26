@@ -9,8 +9,11 @@ import UIKit
 
 class CSTVDataLoadingViewController: UIViewController {
 
+    //MARK: - Component
     
     var containerView: UIView!
+
+    //MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,8 @@ class CSTVDataLoadingViewController: UIViewController {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
+
+    //MARK: - useful methods
 
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
@@ -32,7 +37,7 @@ class CSTVDataLoadingViewController: UIViewController {
             self.containerView.alpha = 1
         }
         
-        let activityIndicator = UIActivityIndicatorView(style: .large)
+        let activityIndicator   = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .white
         containerView.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -56,8 +61,8 @@ class CSTVDataLoadingViewController: UIViewController {
     
     
     func showEmptyStateView(in view: UIView) {
-        let emptyStateView = CSTVEmptyStateView()
-        emptyStateView.frame = view.bounds
+        let emptyStateView      = CSTVEmptyStateView()
+        emptyStateView.frame    = view.bounds
         view.addSubview(emptyStateView)
     }
 
