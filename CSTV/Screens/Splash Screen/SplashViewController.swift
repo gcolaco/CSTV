@@ -27,7 +27,7 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        let delayTime = DispatchTime.now() + .seconds(1)
+        let delayTime = DispatchTime.now() + .seconds(4)
         DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] in
             guard let self = self else { return }
             self.launchMainScreen()

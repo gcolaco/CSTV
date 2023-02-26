@@ -36,6 +36,14 @@ class TeamLineUpCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setFirstTeamSide(with player: Player) {
+        firstTeamLineUp.setupView(with: player)
+    }
+    
+    func setSecondTeamSide(with player: Player) {
+        secondTeamLineUp.setupView(with: player)
+    }
+    
     private func configureCell() {
         addSubview(teamsStackView)
         backgroundColor = .clear

@@ -36,11 +36,11 @@ struct Opponent: Codable {
 struct OpponentInfo: Codable {
     let imageUrl: String?
     let name: String
-    let id: Int
+    let slug: String
     
     private enum CodingKeys: String, CodingKey {
         case imageUrl = "image_url"
-        case name, id
+        case name, slug
     }
 }
 

@@ -14,6 +14,8 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
 //    private let lineUpView = TeamsLineUpView()
     private let tableView = UITableView()
     private let matchDetail: Matches!
+    private var firstTeamPlayers: [Player] = []
+    private var secondTeamPlayers: [Player] = []
     
     let screenTitle: UILabel = {
         let label = UILabel(frame: .zero)
@@ -44,7 +46,14 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         view.backgroundColor = CSTVColors.mainBgColor
         configureUI()
         configureButtonAction()
+//        getFirstTeamPlayers()
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getTeamsPlayers(with: matchDetail.opponents)
+        
     }
     
     init(matchDetail: Matches) {
@@ -59,10 +68,48 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
         
         screenTitle.text = matchDetail.league.name + " " + (matchDetail.serie.name ?? "")
         opposingTeamView.configureFields(with: matchDetail)
+//        getTeamsPlayers(with: matchDetail.opponents)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+   
+    private func getTeamsPlayers(with opponentSlug: [Opponent]) {
+        
+        opponentSlug.enumerated().forEach { index, team in
+            if index == 0 {
+                showLoadingView()
+                NetworkManager.shared.getPlayersInfo(for: team.opponent.slug) { [weak self] result in
+                    guard let self = self else { return }
+                    self.dismissLoadingView()
+                    switch result {
+                    case .success(let team):
+                        self.firstTeamPlayers.append(contentsOf: team[index].players)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("ERROR: \(error.rawValue)")
+                    }
+                }
+
+            }
+            else if index == 1 {
+                NetworkManager.shared.getPlayersInfo(for: team.opponent.slug) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let team):
+                        self.secondTeamPlayers.append(contentsOf: team[index-1].players)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("ERROR: \(error.rawValue)")
+                    }
+                }
+            }
+        }
     }
     
     private func configureUI() {
@@ -116,13 +163,21 @@ final class MatchDetailViewController: CSTVDataLoadingViewController {
 
 extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return firstTeamPlayers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TeamLineUpCell.teamLineUpReuseID, for: indexPath) as! TeamLineUpCell
-        cell.selectionStyle = .none
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: TeamLineUpCell.teamLineUpReuseID, for: indexPath) as? TeamLineUpCell {
+            cell.selectionStyle = .none
+            print("total: \(firstTeamPlayers.count)")
+            let firstTeamPlayer = firstTeamPlayers[indexPath.row]
+            cell.setFirstTeamSide(with: firstTeamPlayer)
+            let secondTeamPlayer = secondTeamPlayers[indexPath.row]
+            cell.setSecondTeamSide(with: secondTeamPlayer)
+            return cell
+        }
+        
+        return UITableViewCell()
     }
     
     

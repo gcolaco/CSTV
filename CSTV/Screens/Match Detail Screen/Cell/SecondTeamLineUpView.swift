@@ -14,7 +14,7 @@ class SecondTeamLineUpView: UIView {
         //        logo.heightAnchor.constraint(equalToConstant: 50).isActive = true
         //        logo.widthAnchor.constraint(equalToConstant: 50).isActive = true
         logo.layer.cornerRadius = 8
-        logo.contentMode = .scaleAspectFill
+        logo.contentMode = .scaleAspectFit
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.image = CSTVImages.playerImgPlaceholder
         return logo
@@ -48,7 +48,7 @@ class SecondTeamLineUpView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureUI()
     }
     
     override func layoutSubviews() {
@@ -60,7 +60,7 @@ class SecondTeamLineUpView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    private func configureUI() {
         addSubviews(secondTeamPlayerImg, secondTeamPlayerNickname, secondTeamPlayerName)
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +78,21 @@ class SecondTeamLineUpView: UIView {
             secondTeamPlayerName.leadingAnchor.constraint(equalTo: secondTeamPlayerNickname.leadingAnchor),
             secondTeamPlayerName.trailingAnchor.constraint(equalTo: secondTeamPlayerNickname.trailingAnchor)
         ])
+    }
+    
+    
+    func setupView(with player: Player) {
+        if let playerImgUrl = player.imageUrl {
+            secondTeamPlayerImg.downloadImageForCash(fromUrl: playerImgUrl)
+        }
+        
+        if let playerFirstName = player.firstName, let playerLastName = player.lastName {
+            secondTeamPlayerName.text = playerFirstName + " " + playerLastName
+        } else {
+            secondTeamPlayerName.text = "Unknown"
+        }
+        
+        secondTeamPlayerNickname.text = player.nickname ?? "Unknown"
         
     }
     

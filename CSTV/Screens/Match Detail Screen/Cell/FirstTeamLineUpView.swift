@@ -12,16 +12,15 @@ class FirstTeamLineUpView: UIView {
     private let firstTeamPlayerImg: UIImageView = {
         let logo = UIImageView()
         logo.layer.cornerRadius = 8
-        logo.contentMode = .scaleAspectFill
+        logo.contentMode = .scaleAspectFit
         logo.clipsToBounds = true
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.image = CSTVImages.playerImgPlaceholder
         return logo
     }()
     
-    let firstTeamPlayerNickname: UILabel = {
+    private let firstTeamPlayerNickname: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Nickname"
         label.textColor = CSTVColors.lightCSTVBlue
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.9
@@ -32,9 +31,8 @@ class FirstTeamLineUpView: UIView {
         return label
     }()
     
-    let firstTeamPlayerName: UILabel = {
+    private let firstTeamPlayerName: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Nome Jogador"
         label.textColor = CSTVColors.lightCSTVBlue
         label.adjustsFontSizeToFitWidth   = true
         label.minimumScaleFactor          = 0.9
@@ -47,7 +45,7 @@ class FirstTeamLineUpView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureUI()
     }
     
     override func layoutSubviews() {
@@ -59,7 +57,7 @@ class FirstTeamLineUpView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    private func configureUI() {
         addSubviews(firstTeamPlayerImg, firstTeamPlayerNickname, firstTeamPlayerName)
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -77,6 +75,21 @@ class FirstTeamLineUpView: UIView {
             firstTeamPlayerName.leadingAnchor.constraint(equalTo: firstTeamPlayerNickname.leadingAnchor),
             firstTeamPlayerName.trailingAnchor.constraint(equalTo: firstTeamPlayerNickname.trailingAnchor)
         ])
+        
+    }
+    
+    func setupView(with player: Player) {
+        if let playerImgUrl = player.imageUrl {
+            firstTeamPlayerImg.downloadImageForCash(fromUrl: playerImgUrl)
+        }
+        
+        if let playerFirstName = player.firstName, let playerLastName = player.lastName {
+            firstTeamPlayerName.text = playerFirstName + " " + playerLastName
+        } else {
+            firstTeamPlayerName.text = "Unknown"
+        }
+        
+        firstTeamPlayerNickname.text = player.nickname ?? "Unknown"
         
     }
 
