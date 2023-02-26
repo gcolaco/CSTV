@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstTeamLineUpView: UIView {
+final class FirstTeamLineUpView: UIView {
 
     private let firstTeamPlayerImg: UIImageView = {
         let logo = UIImageView()

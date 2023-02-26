@@ -82,9 +82,7 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
     }
     
     private func getRunningMatches() {
-//        showLoadingView()
         NetworkManager.shared.getRunningMatches { result in
-//            self.dismissLoadingView()
             switch result {
             case .success(let matches):
                 self.allMatches.insert(contentsOf: matches, at: 0)
@@ -101,14 +99,12 @@ final class MainScreenViewController: CSTVDataLoadingViewController {
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMatches.count
-//        return allMatches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchesCell.matchesCellReuseID, for: indexPath) as? MatchesCell {
             cell.selectionStyle = .none
             let matches = allMatches[indexPath.row]
-//            let matches = allMatches[indexPath.row]
             cell.set(matches: matches)
             return cell
         }

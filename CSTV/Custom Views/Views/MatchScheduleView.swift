@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MatchScheduleView: UIView {
+final class MatchScheduleView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamLineUpCell: UITableViewCell {
+final class TeamLineUpCell: UITableViewCell {
 
     static let teamLineUpReuseID = "TeamLineUpCell"
     private let firstTeamLineUp = FirstTeamLineUpView()

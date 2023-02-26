@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MatchesCell: UITableViewCell {
+final class MatchesCell: UITableViewCell {
      
     static let matchesCellReuseID = "MatchesCell"
 
@@ -42,7 +42,7 @@ class MatchesCell: UITableViewCell {
     
     private lazy var leagueLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "League + serie"
+        label.text = "Unknown"
         label.textColor = .white
         label.font = CSTVFont.robotoRegular(size: 8)
         label.translatesAutoresizingMaskIntoConstraints = false
